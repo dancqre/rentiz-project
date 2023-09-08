@@ -213,10 +213,93 @@ body {
 /*----------------------------Hero-----------------------*/
 
 .hero {
+
+
 	&__container {
 		display: flex;
+		justify-content: space-between;
+		align-items: center;
 	}
+
 	&__content {
 		flex: 0 0 calc(700px /1420px * 100%);
+		padding-bottom: 160px;
+	}
+
+	&__title {
+		font-weight: 600;
+		font-size: clamp(2.5rem, 1.991rem + 2.55vw, 4.25rem);
+		line-height: 126%;
+	}
+
+	&__text {
+		margin-top: 18px;
+
+	}
+
+	&__filter {
+		height: 100px;
+		width: 880px;
+		background-color: #fff;
+		margin-top: 60px;
+		position: absolute;
 	}
 }
+
+/*-----------------------------Filter-----------------------*/
+
+.filter {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 165px;
+	color: black;
+
+	&__btn {
+		padding: 5px;
+		display: flex;
+		height: 100%;
+		width: 100%;
+		button {
+			cursor: pointer;
+			background-color: var(--accent-color);
+			height: 100%;
+			width: 100%;
+			border: none;
+			font-weight: 500;
+			font-size: 24px;
+			text-transform: capitalize;
+			color:#fff;
+
+		}
+	}
+}
+.block-filter{
+	position: relative;
+	&__button {
+		padding-left: 40px;
+		display: flex;
+		justify-content: center;
+		height: 100%;
+		flex-direction: column;
+	}
+	&__header{
+		display: flex;
+		align-items: center;
+	}
+	&__dropdown{
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background-color: #fff;
+		opacity: 0;
+	}
+	&__type {
+		padding-right: 10px;
+	}
+	&__icon {
+		width: 10px;
+		height: 7px;
+		background: url('../img/dropdown.svg') right center no-repeat;
+	}
+}
+/*----------------------------Hero-----------------------*/
