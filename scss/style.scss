@@ -11,6 +11,14 @@
 	box-sizing: border-box;
 
 }
+.title {
+	font-weight: 600;
+	font-size: clamp(1.875rem, 1.548rem + 1.64vw, 3rem);
+	line-height: 126%;
+
+	text-transform: capitalize;
+	color: #fff;
+}
 * img {
 	max-width: 100%;
 }
@@ -89,6 +97,7 @@ body {
 		padding: 20px 0;
 		background-color: var(--accent-color);
 		transition: left .2s;
+		z-index: 10;
 		&._active{
 			left:0;
 		}
@@ -213,14 +222,25 @@ body {
 /*----------------------------Hero-----------------------*/
 
 .hero {
-
-
+	position: relative;
+	padding-bottom: clamp(1.25rem, -0.023rem + 6.36vw, 5.625rem);
+	.hero-deco{
+		position: absolute;
+		bottom: -150px;
+		right: 0;
+		z-index: -1;
+		@media (max-width: 576px) {
+			height: 300px;
+		}
+	}
 	&__container {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		@media (max-width: 992px) {
+			flex-direction: column;
+		}
 	}
-
 	&__content {
 		flex: 0 0 calc(700px /1420px * 100%);
 		padding-bottom: 160px;
@@ -243,6 +263,15 @@ body {
 		background-color: #fff;
 		margin-top: 60px;
 		position: absolute;
+		@media (max-width: 992px){
+			width: 100%;
+		}
+	}
+	&__img {
+		flex: 0 0 calc(700px / 1420px *100%);
+		@media (min-width: 768px) and (max-width: 992px){
+			display: none;
+		}
 	}
 }
 
@@ -251,13 +280,38 @@ body {
 .filter {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 165px;
-	color: black;
+	color: #000;
+	@media (max-width: 576px){
+		grid-template-columns: repeat(3, 1fr);
+	}
+	@media (max-width: 576px) {
+		grid-template-columns: repeat(3, 1fr);
+		padding: 10px;
+		height: auto;
+	}
 
+	@media (max-width: 475px) {
+		grid-template-columns: 1fr;
+		gap: 10px;
+	}
+
+	// .filter__block
+	&__block {
+		&:nth-child(2) {
+			border-right: 1px solid #e8e8e8;
+			border-left: 1px solid #e8e8e8;
+		}
+	}
+
+	// .filter__btn
 	&__btn {
-		padding: 5px;
 		display: flex;
 		height: 100%;
 		width: 100%;
+		padding: 5px;
+		@media (max-width: 576px){
+			grid-column: 1/4;
+		}
 		button {
 			cursor: pointer;
 			background-color: var(--accent-color);
@@ -267,39 +321,120 @@ body {
 			font-weight: 500;
 			font-size: 24px;
 			text-transform: capitalize;
-			color:#fff;
+			color: #ffffff;
+			padding: 10px;
 
+			&:active {
+				background-color: #15786c;
+			}
+		}
+
+		@media (max-width: 576px) and (min-width: 475px) {
+			grid-column: 1/4;
 		}
 	}
 }
-.block-filter{
+
+.block-filter {
 	position: relative;
+
+	// .block-filter__button
 	&__button {
-		padding-left: 40px;
+		padding: 0 clamp(0.625rem, 0.08rem + 2.73vw, 2.5rem);
 		display: flex;
 		justify-content: center;
 		height: 100%;
 		flex-direction: column;
+		cursor: pointer;
 	}
-	&__header{
+
+	// .block-filter__header
+	&__header {
 		display: flex;
 		align-items: center;
 	}
-	&__dropdown{
+
+	// .block-filter__type
+	&__type {
+		padding-right: 2px;
+		font-size: 16px;
+		color: #858585;
+	}
+
+	// .block-filter__icon
+	&__icon {
+		width: 10px;
+		height: 7px;
+		background: url("../img/dropdown.svg") center bottom no-repeat;
+		transition: transform 0.2s;
+
+		&._active {
+			transform: rotate(180deg);
+		}
+	}
+
+	// .block-filter__value
+	&__value {
+		color: var(--bg-color);
+		font-weight: 600;
+		font-size: 18px;
+		text-transform: capitalize;
+	}
+
+	// .block-filter__dropdown
+	&__dropdown {
 		position: absolute;
+		z-index: 3;
 		top: 100%;
 		left: 0;
 		right: 0;
 		background-color: #fff;
+		border-radius: 5px;
+		overflow: hidden;
 		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition: all 0.2s;
+		box-shadow: 0 0 5px 1px #000;
+
+		&._active {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: all;
+			transform: translateY(5px);
+		}
 	}
-	&__type {
-		padding-right: 10px;
-	}
-	&__icon {
-		width: 10px;
-		height: 7px;
-		background: url('../img/dropdown.svg') right center no-repeat;
+
+	// .block-filter__item
+	&__item {
+		padding: 10px;
+		transition: background-color 0.2s;
+		text-transform: capitalize;
+		cursor: pointer;
+
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #adadad;
+			}
+		}
 	}
 }
-/*----------------------------Hero-----------------------*/
+/*-----------------------------Filter-----------------------*/
+
+/*-----------------------------Featured-----------------------*/
+
+.featured {
+	padding-top: clamp(1.25rem, -0.023rem + 6.36vw, 5.625rem);
+
+	&__box {
+		margin-top: 55px;
+		display: flex;
+		justify-content: space-between;
+		gap:30px;
+		align-items: center;
+		overflow: auto;
+	}
+	&__item {
+		flex: 0 0 auto;
+	}
+}
